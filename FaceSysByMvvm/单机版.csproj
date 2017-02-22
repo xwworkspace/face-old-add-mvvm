@@ -163,6 +163,7 @@
     <Compile Include="Common\ValidationRule.cs" />
     <Compile Include="Model\ViewDataModel.cs" />
     <Compile Include="Model\WarningMessageCmd.cs" />
+    <Compile Include="Model\WarningMessageModel.cs" />
     <Compile Include="Model\ZCmdControlModel.cs" />
     <Compile Include="Services\UIServerInter.cs" />
     <Compile Include="ViewModel\CaptureRecordQuery\CaptureRecordQueryViewModel.cs" />

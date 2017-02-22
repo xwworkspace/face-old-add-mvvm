@@ -7,10 +7,11 @@
         xmlns:warningModels ="clr-namespace:FaceSysByMvvm.ViewModel.ChannelManage"
         xmlns:prism ="http://www.codeplex.com/prism"
         xmlns:views="clr-namespace:FaceSysByMvvm.View.ChannelManage"
+        xmlns:controls ="clr-namespace:FaceSysByMvvm.View.ChannelManage.WarningMessageControls"
         mc:Ignorable="d"
         Title="报警提示窗口" Height="500" Width="800"
         d:DataContext="{d:DesignInstance warningModels:WarningMessageWindowViewModel,IsDesignTimeCreatable=True}"
-        prism:ViewModelLocator.AutoWireViewModel="True">
+        prism:ViewModelLocator.AutoWireViewModel="True"> 
 
     <Window.Resources>
         <Style TargetType="Button">
@@ -30,6 +31,10 @@
 
         <Button Content="Btn00001" FontSize="30" Margin="20" Command="{Binding Cmd.TestBtnCommand}" />
 
+        <Grid Grid.Row="1" Grid.Column="0">
+            <controls:WarningDataControl />
+        </Grid>
+
         <Grid Grid.Row="1" Grid.Column="1" Background="Gray">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -37,9 +42,9 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20,0">
-                <Button Margin="10,0" Padding="5,0" Content="清空记录" Command="{Binding}" />
+                <Button Margin="10,0" Padding="5,0" Content="清空记录" Command="{Binding Cmd.ClearBtnCommand}" />
                 <Button Margin="10,0" Padding="5,0" Content="推送结果" Command="{Binding}" />
-                <Button Margin="10,0" Padding="5,0" Content="推送结果" Command="{Binding}" />
+                <Button Margin="10,0" Padding="5,0" Content="推送结果" Command="{Binding Cmd.SendBtnCommand}" />
             </StackPanel>
         </Grid>
     </Grid>

@@ -7,12 +7,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
     <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <ListView Grid.Row="1" 
+        <TextBlock Grid.Row="0" Text="{Binding Property.MyProperty,Mode=TwoWay}" FontSize="16" />
+
+        <!--<ListView Grid.Row="1" 
                   Name="cameraList" 
                   SelectionMode="Single" 
-                  ItemsSource="{Binding Cameras,Mode=TwoWay}"
-                  SelectedItem="{Binding Camera,Mode=TwoWay}">
+                  ItemsSource="{Binding Property.CompareLogDatas,Mode=TwoWay}"
+                  SelectedItem="{Binding Property.CompareLogData,Mode=TwoWay}">
             <ListView.Template>
                 <ControlTemplate>
                     <Border BorderThickness="2">
@@ -38,15 +44,20 @@
                                         <DropShadowEffect Color="Gray" ShadowDepth="4" Opacity="7"/>
                                     </Border.Effect>
 
-                                    <Label Content="{Binding ChannelCfgData.Name}" 
+                                    -->
+        <!--<Label Content="{Binding ChannelCfgData.Name}" 
                                            VerticalContentAlignment="Center" 
                                            HorizontalContentAlignment="Center" 
                                            FontSize="15"
-                                           x:Name="cameraName"/>
+                                           x:Name="cameraName"/>-->
+        <!--
+
+                                    <TextBlock x:Name="compareLog" />
+
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="cameraName" Property="Foreground" Value="Blue" />
+                                        <Setter TargetName="compareLog" Property="Foreground" Value="Blue" />
                                     </Trigger>
                                     <Trigger Property="IsSelected" Value="True">
                                         <Setter TargetName="BD_Collector" Property="Background" Value="DarkSeaGreen" />
@@ -57,7 +68,74 @@
                     </Setter>
                 </Style>
             </ListBox.ItemContainerStyle>
+        </ListView>-->
+
+        <ListView Grid.Row="1" BorderThickness="0" 
+                  Foreground="#4AEAF8" FontSize="14" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                  ItemsSource="{Binding Property.CompareLogDatas}"
+                  SelectedItem="{Binding}">
+            <ListView.View>
+                <GridView  AllowsColumnReorder="True" ColumnHeaderContainerStyle="{StaticResource MyCmpHeaderStyle}">
+                    <GridViewColumn   Header="序号" x:Name="GVCnum">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock MinWidth="{Binding Path=ActualWidth,ElementName=GVCnum}" TextAlignment ="Center" Text="{Binding num}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="抓拍通道名称" x:Name="GVCchannelName">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock MinWidth="{Binding Path=ActualWidth,ElementName=GVCchannelName}" TextAlignment ="Center" Text="{Binding channelName}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="抓拍时间" x:Name="GVCtime">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock MinWidth="{Binding Path=ActualWidth,ElementName=GVCtime}" TextAlignment ="Center" Text="{Binding time}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="模板姓名" x:Name="GVCname">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock MinWidth="{Binding Path=ActualWidth,ElementName=GVCname}" TextAlignment ="Center" Text="{Binding name}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="注册类型" x:Name="GVCtype">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock MinWidth="{Binding Path=ActualWidth,ElementName=GVCtype}"  TextAlignment ="Center" Text="{Binding type}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="相似度" x:Name="GVCscore">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock MinWidth="{Binding Path=ActualWidth,ElementName=GVCscore}" TextAlignment ="Center" Text="{Binding score}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="是否推送" x:Name="GVCcheck">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid Width="{Binding Path=ActualWidth,ElementName=GVCcheck}">
+                                    <CheckBox HorizontalAlignment ="Center" IsChecked="{Binding IsChecked}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
         </ListView>
+
+
 
     </Grid>
 </UserControl>
