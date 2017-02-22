@@ -1,0 +1,11 @@
+﻿<Application x:Class="FaceSysByMvvm.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FaceSysByMvvm"
+             StartupUri="View\ChannelManage\WarningMessageWindow.xaml">
+    <!--View\ChannelManage\WarningMessageWindow.xaml    Login.xaml-->
+    <Application.Resources>
+        <!--View\Login.xaml  View\ChannelManage\ChannelInfo.xaml-->
+        <ResourceDictionary Source="ResourcesDictionary\CommonControl.xaml" ></ResourceDictionary>
+    </Application.Resources>
+</Application>

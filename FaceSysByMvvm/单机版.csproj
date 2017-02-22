@@ -1,0 +1,691 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DA17B46E-F8F6-4710-BA75-5CEC6F16A710}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FaceSysByMvvm</RootNamespace>
+    <AssemblyName>ClientPC</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>LOGO.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxInterop.DZVideoActiveXLib">
+      <HintPath>Dll\AxInterop.DZVideoActiveXLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DZVideoWpf, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\DZVideoWpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.DZVideoActiveXLib">
+      <HintPath>Dll\Interop.DZVideoActiveXLib.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="Prism, Version=6.2.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.6.2.0\lib\net45\Prism.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=6.2.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.2.0\lib\net45\Prism.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Thrift, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\Thrift.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="BusinessServer\AreaStatInfo.cs" />
+    <Compile Include="BusinessServer\CapFaceLogGY.cs" />
+    <Compile Include="BusinessServer\CapFaceLogWithImgGY.cs" />
+    <Compile Include="BusinessServer\CapObjImgGY.cs" />
+    <Compile Include="BusinessServer\ChannelCfgGY.cs" />
+    <Compile Include="BusinessServer\ClientCfg.cs" />
+    <Compile Include="BusinessServer\CmpFaceLogGY.cs" />
+    <Compile Include="BusinessServer\CmpFaceLogInfo.cs" />
+    <Compile Include="BusinessServer\CmpFaceLogWidthImgGY.cs" />
+    <Compile Include="BusinessServer\CmpInfo2Cap.cs" />
+    <Compile Include="BusinessServer\CmpInfo2CapGY.cs" />
+    <Compile Include="BusinessServer\CResultCfg.cs" />
+    <Compile Include="BusinessServer\DiaplayAreaCfg.cs" />
+    <Compile Include="BusinessServer\PieChartStat.cs" />
+    <Compile Include="BusinessServer\SConfigInfo.cs" />
+    <Compile Include="BusinessServer\SCountInfo.cs" />
+    <Compile Include="BusinessServer\SCountInfoArea.cs" />
+    <Compile Include="BusinessServer\SCountInfoOneDay.cs" />
+    <Compile Include="BusinessServer\SServerInfo.cs" />
+    <Compile Include="BusinessServer\STypeInfo.cs" />
+    <Compile Include="BusinessServer\SVisitorOrbit.cs" />
+    <Compile Include="BusinessServer\VisitorInfo.cs" />
+    <Compile Include="Common\BasicInfo.cs" />
+    <Compile Include="Common\NpoiExtend.cs" />
+    <Compile Include="Common\OperaExcel.cs" />
+    <Compile Include="Common\ValidationRule.cs" />
+    <Compile Include="Model\ViewDataModel.cs" />
+    <Compile Include="Model\WarningMessageCmd.cs" />
+    <Compile Include="Model\ZCmdControlModel.cs" />
+    <Compile Include="Services\UIServerInter.cs" />
+    <Compile Include="ViewModel\CaptureRecordQuery\CaptureRecordQueryViewModel.cs" />
+    <Compile Include="ViewModel\ChannelManage\ChannelCompareViewModel.cs" />
+    <Compile Include="ViewModel\ChannelManage\ChannelInfoViewModel.cs" />
+    <Compile Include="ViewModel\ChannelManage\WarningMessageWindowViewModel.cs" />
+    <Compile Include="ViewModel\TemplateManager\TemplateManagerViewModel.cs" />
+    <Compile Include="ViewModel\TemplateManager\TempleteImportPopViewModel.cs" />
+    <Compile Include="ViewModel\TemplateManager\TempleteInfoPopViewModel.cs" />
+    <Compile Include="View\CaptureRecordQuery\CaptureRecordQuery.xaml.cs">
+      <DependentUpon>CaptureRecordQuery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChannelManage\ChannelCompare.xaml.cs">
+      <DependentUpon>ChannelCompare.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChannelManage\ChannelInfo.xaml.cs">
+      <DependentUpon>ChannelInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChannelManage\WarningMessage.xaml.cs">
+      <DependentUpon>WarningMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChannelManage\WarningMessageControls\WarningDataControl.xaml.cs">
+      <DependentUpon>WarningDataControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChannelManage\WarningMessageWindow.xaml.cs">
+      <DependentUpon>WarningMessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CompOfRecords\CompInfo.xaml.cs">
+      <DependentUpon>CompInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyMessage.xaml.cs">
+      <DependentUpon>MyMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TemplateManager\TemplateManager.xaml.cs">
+      <DependentUpon>TemplateManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TemplateManager\TempleteImportPop.xaml.cs">
+      <DependentUpon>TempleteImportPop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TemplateManager\TempleteInfoPop.xaml.cs">
+      <DependentUpon>TempleteInfoPop.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ResourcesDictionary\CommonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CaptureRecordQuery\CaptureRecordQuery.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChannelManage\ChannelCompare.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChannelManage\ChannelInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChannelManage\ChannelManage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChannelManage\WarningMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChannelManage\WarningMessageControls\WarningDataControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChannelManage\WarningMessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CompOfRecords\CompInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CompOfRecords\CompOfRecords.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Login.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessServer\AuthCfg.cs" />
+    <Compile Include="BusinessServer\BusinessServer.cs" />
+    <Compile Include="BusinessServer\CapFaceLog.cs" />
+    <Compile Include="BusinessServer\CapFaceLogWithImg.cs" />
+    <Compile Include="BusinessServer\CapObjImg.cs" />
+    <Compile Include="BusinessServer\CapServer.cs" />
+    <Compile Include="BusinessServer\CapServerErrCode.cs" />
+    <Compile Include="BusinessServer\CaptureCfg.cs" />
+    <Compile Include="BusinessServer\CatchFaceCfg.cs" />
+    <Compile Include="BusinessServer\ChannelCfg.cs" />
+    <Compile Include="BusinessServer\ChannelErrCode.cs" />
+    <Compile Include="BusinessServer\ChannelState.cs" />
+    <Compile Include="BusinessServer\CmpFaceLog.cs" />
+    <Compile Include="BusinessServer\CmpFaceLogWidthImg.cs" />
+    <Compile Include="BusinessServer\CmpResult.cs" />
+    <Compile Include="BusinessServer\CmpServer.cs" />
+    <Compile Include="BusinessServer\CmpServerFaceObj.cs" />
+    <Compile Include="BusinessServer\CompareImgResult.cs" />
+    <Compile Include="BusinessServer\ErrorInfo.cs" />
+    <Compile Include="BusinessServer\FaceInfo.cs" />
+    <Compile Include="BusinessServer\FaceObj.cs" />
+    <Compile Include="BusinessServer\FaceObjTemplate.cs" />
+    <Compile Include="BusinessServer\FaceTemplate.cs" />
+    <Compile Include="BusinessServer\FaceTemplateEx.cs" />
+    <Compile Include="BusinessServer\RealtimeCapInfo.cs" />
+    <Compile Include="BusinessServer\RealtimeCmpInfo.cs" />
+    <Compile Include="BusinessServer\ResourceCfg.cs" />
+    <Compile Include="BusinessServer\TmpGroupCfg.cs" />
+    <Compile Include="BusinessServer\UIServer.cs" />
+    <Compile Include="BusinessServer\UserCfg.cs" />
+    <Compile Include="BusinessServer\ZoneCfg.cs" />
+    <Compile Include="BusinessServer\_POINT.cs" />
+    <Compile Include="BusinessServer\_RECT.cs" />
+    <Compile Include="Common\WriteLog.cs" />
+    <Compile Include="Model\AddParams.cs" />
+    <Compile Include="Model\DBTableInfo.cs" />
+    <Compile Include="Services\IThirtfService.cs" />
+    <Compile Include="Services\ThirftService.cs" />
+    <Compile Include="ViewModel\ChannelManage\ChannelListItemViewModel.cs" />
+    <Compile Include="ViewModel\ChannelManage\ChannelManageViewModel.cs" />
+    <Compile Include="ViewModel\CompOfRecords\CompOfRecordsViewModel.cs" />
+    <Compile Include="View\ChannelManage\ChannelManage.xaml.cs">
+      <DependentUpon>ChannelManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CompOfRecords\CompOfRecords.xaml.cs">
+      <DependentUpon>CompOfRecords.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\MyMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TemplateManager\TemplateManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TemplateManager\TempleteImportPop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TemplateManager\TempleteInfoPop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\模板照片.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\登录.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\IP端口.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\登陆.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\主体大背景.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\主界面背景.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\标题栏比对记录抓拍记录模板管理栏背景.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\通道名称背景.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\通道栏下方背景.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\通道栏大背景.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\视频预览上.png" />
+    <Resource Include="Images\视频预览下.png" />
+    <Resource Include="Images\视频预览中.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\抓拍结果上部分.png" />
+    <Resource Include="Images\抓拍识别区下方蓝色图案.png" />
+    <Resource Include="Images\抓拍识别区域照片背景.png" />
+    <Resource Include="Images\识别抓拍结果下部分.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\识别结果上部分.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\通道管理区背景.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\通道栏左侧摄像机未点亮状态.png" />
+    <Resource Include="Images\通道栏左侧摄像机点亮状态.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\选中记录背景条.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\左侧下方背景.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\雷达背景.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\旋转图形.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Loading.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\抓拍照片.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\照片选取后前景.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\比对照片1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\右侧下方照片比对背景.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\左侧蓝色条.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\查询.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\左侧上方背景.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\按钮点亮.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\按钮未点亮.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\抓拍识别区下方转到背景框未点亮状态.png" />
+    <Resource Include="Images\转到背景框.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\抓拍照片纯背景.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\子菜单之提示框.png" />
+    <Resource Include="Images\子菜单之提示框取消按钮未点亮.png" />
+    <Resource Include="Images\子菜单之提示框取消按钮点亮状态.png" />
+    <Resource Include="Images\子菜单之提示框确定按钮未点亮.png" />
+    <Resource Include="Images\子菜单之提示框确定按钮点亮状态.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\查询照片.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\无照片前景框.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\扫描进度条.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\模板管理右侧下方背景.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\no video背景.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\2-比对记录查询.png" />
+    <Resource Include="Images\BarDown.png" />
+    <Resource Include="Images\BarDown_S.png" />
+    <Resource Include="Images\BarUp.png" />
+    <Resource Include="Images\BarUp_S.png" />
+    <Resource Include="Images\bar_center.png" />
+    <Resource Include="Images\Login.ico" />
+    <Resource Include="Images\logo.jpg" />
+    <Resource Include="Images\Logo.png" />
+    <Resource Include="Images\no video不带字背景.png" />
+    <Resource Include="Images\上一页按钮未点亮.png" />
+    <Resource Include="Images\上一页按钮点亮.png" />
+    <Resource Include="Images\上字未点亮状态.png" />
+    <Resource Include="Images\上字点亮状态.png" />
+    <Resource Include="Images\下一页按钮未点亮.png" />
+    <Resource Include="Images\下一页按钮点亮.png" />
+    <Resource Include="Images\下字未点亮状态.png" />
+    <Resource Include="Images\下字点亮状态.png" />
+    <Resource Include="Images\主界面-视频预览-主界面.jpg" />
+    <Resource Include="Images\人脸抓拍参数设置.png" />
+    <Resource Include="Images\修改.png" />
+    <Resource Include="Images\修改未点亮.png" />
+    <Resource Include="Images\删除未点亮.png" />
+    <Resource Include="Images\删除点亮.png" />
+    <Resource Include="Images\删除点亮状态.png" />
+    <Resource Include="Images\叉.png" />
+    <Resource Include="Images\叉1.png" />
+    <Resource Include="Images\叉2.png" />
+    <Resource Include="Images\右侧背景条.png" />
+    <Resource Include="Images\告警.png" />
+    <Resource Include="Images\图像源参数设置.png" />
+    <Resource Include="Images\子菜单之批量导入说明.png" />
+    <Resource Include="Images\子菜单之查看抓拍详细信息.png" />
+    <Resource Include="Images\子菜单之查看比对记录.png" />
+    <Resource Include="Images\子菜单之查看比对记录中间背景.png" />
+    <Resource Include="Images\子菜单之查看比对记录抓拍按钮未点亮.png" />
+    <Resource Include="Images\子菜单之查看比对记录抓拍按钮点亮状态.png" />
+    <Resource Include="Images\子菜单之注册详细信息.png" />
+    <Resource Include="Images\子菜单修改模板.png" />
+    <Resource Include="Images\子菜单告警.png" />
+    <Resource Include="Images\子菜单批量导入之保存错误照片按钮未点亮.png" />
+    <Resource Include="Images\子菜单批量导入之保存错误照片按钮点亮状态.png" />
+    <Resource Include="Images\子菜单批量导入之导入模板文件按钮未点亮.png" />
+    <Resource Include="Images\子菜单批量导入之导入模板文件按钮点亮状态.png" />
+    <Resource Include="Images\子菜单批量导入之导入说明按钮未点亮.png" />
+    <Resource Include="Images\子菜单批量导入之导入说明按钮点亮状态.png" />
+    <Resource Include="Images\子菜单批量导入之错误地址未点亮.png" />
+    <Resource Include="Images\子菜单批量导入之错误地址点亮状态.png" />
+    <Resource Include="Images\子菜单批量导入背景.png" />
+    <Resource Include="Images\子菜单模板管理下方相框背景.png" />
+    <Resource Include="Images\子菜单模板管理右侧相框背景.png" />
+    <Resource Include="Images\子菜单添加模板.png" />
+    <Resource Include="Images\导入查询照片.png" />
+    <Resource Include="Images\尾字未点亮状态.png" />
+    <Resource Include="Images\尾字点亮状态.png" />
+    <Resource Include="Images\尾页按钮未点峦.png" />
+    <Resource Include="Images\尾页按钮点亮.png" />
+    <Resource Include="Images\左侧下方左右进度条旁边深颜色.png" />
+    <Resource Include="Images\批量导入未点亮.png" />
+    <Resource Include="Images\批量导入点亮状态.png" />
+    <Resource Include="Images\抓拍比对详细信息.png" />
+    <Resource Include="Images\抓拍照片1.png" />
+    <Resource Include="Images\抓拍照片抓拍通道抓拍时间背景.png" />
+    <Resource Include="Images\抓拍结果背景带边框线.png" />
+    <Resource Include="Images\抓拍记录上一页未点亮.png" />
+    <Resource Include="Images\抓拍记录下一页未点亮.png" />
+    <Resource Include="Images\抓拍记录尾页未点亮.png" />
+    <Resource Include="Images\抓拍记录首页未点亮.png" />
+    <Resource Include="Images\抓拍识别区下方转到第几页中间方框未点亮状态.png" />
+    <Resource Include="Images\旋转图形1.png" />
+    <Resource Include="Images\条件查询未点亮.png" />
+    <Resource Include="Images\条件查询点亮状态.png" />
+    <Resource Include="Images\查询点亮.png" />
+    <Resource Include="Images\标题栏.png" />
+    <Resource Include="Images\模板照片纯背景 .png" />
+    <Resource Include="Images\模板照片纯背景.png" />
+    <Resource Include="Images\模板管理左侧下方大背景.png" />
+    <Resource Include="Images\比对照片纯背景.png" />
+    <Resource Include="Images\比对结果列表背景.png" />
+    <Resource Include="Images\比对结果列表背景1.png" />
+    <Resource Include="Images\添加未点亮.png" />
+    <Resource Include="Images\添加模板之取消为主照片.png" />
+    <Resource Include="Images\添加模板之取消为主照片未点亮.png" />
+    <Resource Include="Images\添加模板之取消未点亮.png" />
+    <Resource Include="Images\添加模板之取消点亮状态.png" />
+    <Resource Include="Images\添加模板之浏览未点亮.png" />
+    <Resource Include="Images\添加模板之浏览点亮状态.png" />
+    <Resource Include="Images\添加模板之添加为主照片.png" />
+    <Resource Include="Images\添加模板之添加为主照片点亮.png" />
+    <Resource Include="Images\添加模板之确定未点亮.png" />
+    <Resource Include="Images\添加模板之确定点亮状态.png" />
+    <Resource Include="Images\添加模板之移除.png" />
+    <Resource Include="Images\添加模板之移除点亮状态.png" />
+    <Resource Include="Images\添加点亮状态.png" />
+    <Resource Include="Images\添加点亮状态1.png" />
+    <Resource Include="Images\添加通道.png" />
+    <Resource Include="Images\添加通道参数设置.png" />
+    <Resource Include="Images\添加通道参数设置点亮.png" />
+    <Resource Include="Images\添加通道图像源参数设置.png" />
+    <Resource Include="Images\添加通道子菜单.png" />
+    <Resource Include="Images\添加通道重新生成编号.png" />
+    <Resource Include="Images\添加通道重新生成编号点亮.png" />
+    <Resource Include="Images\照片查询未点亮.png" />
+    <Resource Include="Images\照片查询点亮状态.png" />
+    <Resource Include="Images\照片背景.png" />
+    <Resource Include="Images\照片边框.png" />
+    <Resource Include="Images\照片选取后背景.png" />
+    <Resource Include="Images\照片选取后背景有文字.png" />
+    <Resource Include="Images\登录01.png" />
+    <Resource Include="Images\登录02.png" />
+    <Resource Include="Images\登陆按钮点亮.png" />
+    <Resource Include="Images\移除查询照片.png" />
+    <Resource Include="Images\翻页未点亮.png" />
+    <Resource Include="Images\翻页点亮.png" />
+    <Resource Include="Images\设置窗口布局未点亮状态.png" />
+    <Resource Include="Images\设置窗口布局点亮状态.png" />
+    <Resource Include="Images\识别抓拍栏中间区域最底层深色背景.png" />
+    <Resource Include="Images\识别比对背景框未点亮状态.png" />
+    <Resource Include="Images\识别比对背景框点亮状态.png" />
+    <Resource Include="Images\通道栏下方右三角未点亮状态.png" />
+    <Resource Include="Images\通道栏下方右三角未点亮状态1.png" />
+    <Resource Include="Images\通道栏下方添加删除修改按钮背景图标1.png" />
+    <Resource Include="Images\通道栏下方添加删除修改按钮背景图标2.png" />
+    <Resource Include="Images\通道栏下方添加删除修改按钮背景图标3.png" />
+    <Resource Include="Images\通道栏下方添加删除修改按钮背景图标之中间点亮状态.png" />
+    <Resource Include="Images\通道栏下方添加删除修改按钮背景图标之最左侧点亮状态.png" />
+    <Resource Include="Images\通道栏下方添加删除修改按钮背景图标之最左侧点亮状态3.png" />
+    <Resource Include="Images\通道栏各通道点亮时背景.png" />
+    <Resource Include="Images\通道确认.png" />
+    <Resource Include="Images\通道确认点亮.png" />
+    <Resource Include="Images\重置为默认值未点亮.png" />
+    <Resource Include="Images\重置为默认值点亮状态.png" />
+    <Resource Include="Images\首字未点亮状态.png" />
+    <Resource Include="Images\首字点亮状态.png" />
+    <Resource Include="Images\首页按钮未点亮.png" />
+    <Resource Include="Images\首页按钮点亮.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\新logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\深醒科技.png" />
+    <Resource Include="Images\深醒科技英文.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\刷新按钮.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\图片查询按钮.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\主界面恢复.png" />
+    <Resource Include="Images\主界面最大化.png" />
+    <Resource Include="Images\主界面最小化.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="XML\AreaInfo.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XML\CaptureRealTimeInfo.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XML\IdentifyRealTimeInfo.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XML\port.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Resource Include="LOGO.ico" />
+    <Resource Include="Images\添加通道子菜单（修改）.png" />
+    <Content Include="Resources\Audio\ALARM1.WAV">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Audio\ALARM2.WAV">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Audio\ALARM3.WAV">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Audio\ALARM4.WAV">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Audio\ALARM5.WAV">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

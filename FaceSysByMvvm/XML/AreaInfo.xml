@@ -1,0 +1,21 @@
+﻿<xml>
+  <areainfo>
+    <type>5</type>
+    <info>74</info>
+    <ipstrs>
+      <ipstr>192.168.1.252</ipstr>
+    </ipstrs>
+    <alarmnum>1</alarmnum>
+    <threshold>70</threshold>
+  </areainfo>
+  <areainfo>
+    <type>6</type>
+    <info>东2站</info>
+    <ipstrs>
+      <ipstr>192.168.1.9</ipstr>          
+     <ipstr>192.168.1.85</ipstr>
+    </ipstrs>
+    <alarmnum>2</alarmnum>
+    <threshold>70</threshold>
+  </areainfo>
+</xml>

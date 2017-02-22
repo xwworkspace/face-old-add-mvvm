@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <启动端口>
+    <port>6000</port>
+  </启动端口>
+  <UserInfo>
+    <UserID>
+    </UserID>
+    <Password>
+    </Password>
+  </UserInfo>
+  <IpAdress>
+    <IP>192.168.1.11</IP>
+    <Port>9091</Port>
+  </IpAdress>
+</Root>

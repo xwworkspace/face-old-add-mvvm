@@ -1,0 +1,449 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FaceSysByMvvm.View.CompOfRecords"
+             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" x:Class="FaceSysByMvvm.View.CompOfRecords.CompOfRecords"
+             mc:Ignorable="d" 
+             Background="Transparent" d:DesignHeight="900" d:DesignWidth="1540">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="..\..\Images\主体大背景.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--查询条件和结果-->
+        <Grid Grid.Column="0" Margin="0,0,0,5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <!--查询条件-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!--通道-->
+                <Label Grid.Row="0" Grid.Column="0" Margin="2" Content="通道" Style="{StaticResource NormalLable}"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" x:Name="ComChannel" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="24"  Foreground="#49BBED" Style="{StaticResource ComboBoxStyle2}" ItemsSource="{Binding Channel}" SelectedIndex="{Binding SelectedChannel}">
+                </ComboBox>
+                <!--模板姓名-->
+                <Label Grid.Row="1" Grid.Column="0" Content="模板姓名" Margin="2" Style="{StaticResource NormalLable}"/>
+                <TextBox TextAlignment="Center" Grid.Row="1" Grid.Column="1" x:Name="txtTemplateName" VerticalContentAlignment="Center" VerticalAlignment="Center" 
+                                                   Margin="1,4,1,4" Foreground="#49BBED" Height="22" Background="Transparent" BorderThickness="1" BorderBrush="#49BBED" Text="{Binding Name}"/>
+                <!--模版类别-->
+                <Label Grid.Row="1" Grid.Column="2" Content="模板类别" Style="{StaticResource NormalLable}" />
+                <ComboBox Grid.Row="1" Grid.Column="3" x:Name="combTemplateType" VerticalContentAlignment="Center" 
+                                                  VerticalAlignment="Center" Height="24"  Style="{StaticResource ComboBoxStyle2}" ItemsSource="{Binding Type}" SelectedIndex="{Binding SelectedType}"/>
+                <!--模版性别-->
+                <Label Grid.Row="2" Grid.Column="0" Content="模板性别" Style="{StaticResource NormalLable}" />
+                <ComboBox Grid.Row="2" Grid.Column="1" x:Name="combTemplateSex" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                          Height="24"  Style="{StaticResource ComboBoxStyle2}" ItemsSource="{Binding Sex}" SelectedIndex="{Binding SelectedSex}">
+                </ComboBox>
+                <!--模版年龄-->
+                <Label Grid.Row="2" Grid.Column="2" Content="模板年龄" Style="{StaticResource NormalLable}" />
+                <Grid Grid.Row="2" Grid.Column="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Text="{Binding LittleAge}" x:Name="txtTemplateStartAge" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                                   Margin="1,4,1,4" Height="22" Background="Transparent" Foreground="#49BBED" BorderThickness="1" BorderBrush="#49BBED"/>
+                    <Label Content="--" Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Center" Foreground="#247791" HorizontalAlignment="Right"/>
+                    <TextBox Text="{Binding OldAge}" x:Name="txtTemplateEndAge" Grid.Column="2" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                                   Margin="1,4,1,4" Height="22" Background="Transparent" Foreground="#49BBED" BorderThickness="1" BorderBrush="#49BBED"/>
+                </Grid>
+                <!--时间段-->
+                <Label Grid.Row="3" Grid.Column="0" Content="开始日期" Margin="2" Style="{StaticResource NormalLable}"/>
+                <Grid Grid.Row="3" Grid.Column="1">
+                    <Border  Margin="1,4,1,4"  Background="Transparent" BorderThickness="1" BorderBrush="#49BBED">
+                        <DatePicker MouseDoubleClick="ClearDatePickerTime"  Grid.Column="0" FontSize="12" x:Name="dtPkCompRecordStarTime" Background="Transparent"
+                                              Text="{Binding StartDay,Mode=TwoWay}"      BorderThickness="0" BorderBrush="Transparent" 
+                                                    VerticalContentAlignment="Center" VerticalAlignment="Center" Foreground="#49BBED"/>
+                    </Border>
+                </Grid>
+                <Label Grid.Row="4" Grid.Column="0" Content="开始时辰" Margin="2" Style="{StaticResource NormalLable}"/>
+                <ComboBox Grid.Row="4" x:Name="combCompRecordStarTimeHour" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="24"  Style="{StaticResource ComboBoxStyle2}" ItemsSource="{Binding StartHour}" SelectedIndex="{Binding SelectedStartHour}" ></ComboBox>
+
+                <Label Grid.Row="5" Grid.Column="0" Content="开始分钟" Margin="2" Style="{StaticResource NormalLable}"/>
+                <ComboBox x:Name="combCompRecordStarTimeMinutes" Grid.Row="5"  Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="24"  Style="{StaticResource ComboBoxStyle2}" ItemsSource="{Binding StartMinutes}" SelectedIndex="0" ></ComboBox>
+
+                <Label Grid.Row="3" Grid.Column="2" Content="结束日期" Margin="2" Style="{StaticResource NormalLable}"/>
+                <Grid Grid.Row="3" Grid.Column="3">
+                    <Border Margin="1,4,1,4" Height="22" Background="Transparent" BorderThickness="1" BorderBrush="#49BBED">
+                        <DatePicker MouseDoubleClick="ClearDatePickerTime" Height="26" Grid.Column="0" FontSize="12" x:Name="dtPkCompRecordEndTime" 
+                                           Text="{Binding EndDay,Mode=TwoWay}"    Background="Transparent" BorderThickness="0" BorderBrush="Transparent"
+                                                    VerticalContentAlignment="Center" VerticalAlignment="Center" Foreground="#49BBED"/>
+                    </Border>
+                </Grid>
+                <Label Grid.Row="4" Grid.Column="2" Content="结束时辰" Margin="2" Style="{StaticResource NormalLable}"/>
+                <ComboBox Grid.Row="4" Grid.Column="3" Height="24"  x:Name="combCompRecordEndTimeHour" VerticalAlignment="Center" VerticalContentAlignment="Center"  Style="{StaticResource ComboBoxStyle2}" ItemsSource="{Binding EndHour}" SelectedIndex="{Binding SelectedEndHour}"/>
+
+                <Label Grid.Row="5" Grid.Column="2" Content="结束分钟" Margin="2" Style="{StaticResource NormalLable}"/>
+                <ComboBox x:Name="combCompRecordEndTimeMinutes" Grid.Row="5"  Grid.Column="3" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="24"  Style="{StaticResource ComboBoxStyle2}" ItemsSource="{Binding EndMinutes}" SelectedIndex="59" ></ComboBox>
+                <!--查询按钮-->
+                <Button Grid.Row="2" Style="{StaticResource NoBorderButton}" Grid.Column="4" Grid.RowSpan="2" x:Name="btnCompOfRecordsQuery"  
+                                                      Margin="20,2,20,2"  Content="查询" FontFamily="华文细黑" 
+                                                 Foreground="#24EAFB" FontSize="20" Click="btnCompOfRecordsQuery_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="..\..\Images\查询.png"></ImageBrush>
+                    </Button.Background>
+                </Button>
+                <!--推送-->
+                <DockPanel Grid.Row="4" Grid.Column="4" Grid.RowSpan="2" LastChildFill="True">
+                    <Button Visibility="Collapsed" Click="ExportExcelFile_Click" Margin="20,2,20,2" Style="{StaticResource btnStyle}" FontFamily="华文细黑" Foreground="#24EAFB" FontSize="18">导出结果</Button>
+                    <Button Visibility="Visible" DockPanel.Dock="Top" x:Name="buttonSend" Click="SendFile_Click" Margin="20,2,20,2"   Content="推送结果" FontFamily="华文细黑" Foreground="#24EAFB" FontSize="18" Style="{StaticResource btnStyle}"></Button>
+                </DockPanel>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="5,0,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="437*"/>
+                        <ColumnDefinition Width="74*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <!--页面操作-->
+                    <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="..\..\Images\左侧上方背景.png"></ImageBrush>
+                        </Grid.Background>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="1.3*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Label Content="结果显示" FontSize="15" Foreground="#D6F9FD" FontFamily="华文细黑" Opacity="0.99"/>
+                        </Grid>
+                        <Grid Margin="20,0,20,0" Grid.Column="1">
+                            <StackPanel Orientation="Horizontal">
+                                <Label x:Name="labComparisonRecordCounts" VerticalAlignment="Center" Foreground="#49BBED" Content="{Binding CurrPage}"/>
+                                <Label VerticalAlignment="Center" Foreground="#49BBED" Content="/"/>
+                                <Label VerticalAlignment="Center" Foreground="#49BBED" Content="{Binding MaxPage}"/>
+                                <Label VerticalAlignment="Center" Foreground="#49BBED" Content="页|"/>
+                                <Label VerticalAlignment="Center" Foreground="#49BBED" Content="{Binding MaxCount}"/>
+                                <Label VerticalAlignment="Center" Foreground="#49BBED" Content="条"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="2" Margin="5,4,0,2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <!--首页-->
+                            <Button Grid.Column="0" x:Name="btnComparisonRecordFirstPage" Click="btnPageChange_Click" Content="首页" FontFamily="华文细黑" 
+                                                 Foreground="#24EAFB" FontSize="14"  Style="{StaticResource btnStyle}"></Button>
+                            <Button Grid.Column="1" x:Name="btnComparisonRecordPastPage" Click="btnPageChange_Click" Content="上一页" FontFamily="华文细黑" 
+                                                 Foreground="#24EAFB" FontSize="14" Style="{StaticResource btnStyle}"/>
+                            <Button Grid.Column="2" x:Name="btnComparisonRecordNextPage" Click="btnPageChange_Click" Content="下一页" FontFamily="华文细黑" 
+                                                 Foreground="#24EAFB" FontSize="14" Style="{StaticResource btnStyle}"/>
+                            <Button Grid.Column="3"  x:Name="btnComparisonRecordLastPage" Click="btnPageChange_Click" Content="尾页" FontFamily="华文细黑" 
+                                                 Foreground="#24EAFB" FontSize="14" Style="{StaticResource btnStyle}"/>
+                        </Grid>
+                        <Grid Grid.Column="3" Margin="10,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Content="转到" Width="43" Click="btnPageChange_Click" Height="22" FontSize="11" Margin="2,8,0,8" HorizontalAlignment="Right" Foreground="#49BBED" 
+                                                        x:Name="btnComparisonRecordGoToPage" Style="{StaticResource btnNoBackGroundStyle}"/>
+                            <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Margin="1,4,1,4" Height="22" VerticalContentAlignment="Center" Grid.Column="0" Background="Transparent"
+                                                         x:Name="txtComparisonRecordGoToPage" BorderThickness="2" BorderBrush="#247791" Foreground="#247791"/>
+                                <Label Grid.Column="1" Content="页" Foreground="#16E8FA" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Grid Grid.Column="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <ComboBox Grid.Column="0" x:Name="combComparisonRecordNum" Height="22" Style="{DynamicResource ComboBoxStyle2}" ItemsSource="{Binding PageRow}" SelectedIndex="{Binding SelectedPageRow}"/>
+                                <Label Grid.Column="1" Content="行" Foreground="#49BBED" VerticalAlignment="Center"/>
+                            </Grid>
+                            <ComboBox Grid.Column="3" Grid.ColumnSpan="2" x:Name="combTimeUpOrDown" Visibility="Hidden" />
+                        </Grid>
+                    </Grid>
+                    <!--列表显示-->
+                    <ListView ListViewItem.MouseDoubleClick="listComparisonRecord_MouseDoubleClick"  Grid.Row="1" x:Name="listComparisonRecord" BorderThickness="0" 
+                                                  Foreground="#4AEAF8" FontSize="14" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SizeChanged="listComparisonRecord_SizeChanged_1"
+                                                  SelectionChanged="listComparisonRecord_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemsSource="{Binding ListMyCmpFaceLogWidthImg}" Grid.ColumnSpan="2">
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                            <Grid Background="Transparent">
+                                                <Border x:Name="bd"  
+                                BorderThickness="1"  
+                                Padding="{TemplateBinding Padding}"  
+                                SnapsToDevicePixels="True">
+                                                    <GridViewRowPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  
+                                                  Margin="3"/>
+                                                </Border>
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter TargetName="bd" Property="Background">
+                                                        <Setter.Value>
+                                                            <ImageBrush ImageSource="..\..\Images\选中记录背景条.png"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.Resources>
+                        <ListView.Background>
+                            <ImageBrush ImageSource="..\..\Images\左侧下方背景.png"/>
+                        </ListView.Background>
+                        <ListView.View>
+                            <GridView  AllowsColumnReorder="True" ColumnHeaderContainerStyle="{StaticResource MyCmpHeaderStyle}">
+                                <GridViewColumn   Header="序号" x:Name="GVCnum">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock MinWidth="{Binding Path=ActualWidth,ElementName=GVCnum}" TextAlignment ="Center" Text="{Binding num}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn  Header="抓拍通道名称" x:Name="GVCchannelName">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock MinWidth="{Binding Path=ActualWidth,ElementName=GVCchannelName}" TextAlignment ="Center" Text="{Binding channelName}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn  Header="抓拍时间" x:Name="GVCtime">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock MinWidth="{Binding Path=ActualWidth,ElementName=GVCtime}" TextAlignment ="Center" Text="{Binding time}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn  Header="模板姓名" x:Name="GVCname">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock MinWidth="{Binding Path=ActualWidth,ElementName=GVCname}" TextAlignment ="Center" Text="{Binding name}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn  Header="注册类型" x:Name="GVCtype">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock MinWidth="{Binding Path=ActualWidth,ElementName=GVCtype}"  TextAlignment ="Center" Text="{Binding type}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn  Header="相似度" x:Name="GVCscore">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <TextBlock MinWidth="{Binding Path=ActualWidth,ElementName=GVCscore}" TextAlignment ="Center" Text="{Binding score}"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="是否推送" x:Name="GVCcheck">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="{Binding Path=ActualWidth,ElementName=GVCcheck}">
+                                                <CheckBox HorizontalAlignment ="Center" IsChecked="{Binding IsChecked}"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Grid Width="100" Height="114" Grid.Row="1" x:Name="gridWaitingComp"  Visibility="{Binding LoadingVisiblity}" Margin="461,280,312.615,281">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="..\..\Images\雷达背景.png"/>
+                        </Grid.Background>
+                        <Grid.Triggers>
+                            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard RepeatBehavior="Forever" >
+                                        <DoubleAnimation Storyboard.TargetName="imageLargeRotateTransform" Storyboard.TargetProperty="Angle" By="360" Duration="0:0:2"    />
+                                        <DoubleAnimation Storyboard.TargetName="image1" Storyboard.TargetProperty="Opacity" From="0.0"  To="1.0" Duration="0:0:0.01"    />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                                <BeginStoryboard>
+                                    <Storyboard RepeatBehavior="Forever">
+                                        <DoubleAnimation Storyboard.TargetName="labPoint1" Storyboard.TargetProperty="Opacity" AutoReverse="True" Duration="0:0:0.5" BeginTime="0:0:0.1" To="1"/>
+                                        <DoubleAnimation Storyboard.TargetName="labPoint2" Storyboard.TargetProperty="Opacity" AutoReverse="True" Duration="0:0:0.3" BeginTime="0:0:0.2" From="0" To="1"/>
+                                        <DoubleAnimation Storyboard.TargetName="labPoint3" Storyboard.TargetProperty="Opacity" AutoReverse="True" Duration="0:0:0.1" BeginTime="0:0:0.5" From="0" To="1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Grid.Triggers>
+                        <Image Height="40" HorizontalAlignment="Left"  Margin="11,9,0,0" x:Name="image1" 
+               Stretch="Fill" VerticalAlignment="Top" Width="39" Source="..\..\Images\旋转图形.png">
+                            <Image.RenderTransform>
+                                <RotateTransform x:Name="imageLargeRotateTransform"  Angle="0" CenterX="39" CenterY="40"/>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Label Margin="-20,83,0,0" Foreground="#26A5DC" Height="20" Width="60">
+                            <Label.Background>
+                                <ImageBrush ImageSource="..\..\Images\Loading.png"/>
+                            </Label.Background>
+                        </Label>
+                        <Label Margin="62,63,0,0" x:Name="labPoint1" FontSize="35" Height="55" Width="35" Foreground="#26A5DC"
+               VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Opacity="0" Content="."/>
+                        <Label Margin="71,63,0,0" x:Name="labPoint2" FontSize="35" Height="55" Width="35" Foreground="#26A5DC" 
+               VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Opacity="0" Content="."/>
+                        <Label Margin="80,63,0,0" x:Name="labPoint3" FontSize="35" Height="55" Width="35" Foreground="#26A5DC" 
+               VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Opacity="0" Content="."/>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <!--列表显示-->
+
+        </Grid>
+        <!--照片和信息展示-->
+        <Grid Grid.Column="1" Margin="2,0,5,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2.5*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <!--照片显示-->
+            <Grid Grid.Row="0" Margin="5,0,0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="GridCapPic">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="..\..\Images\抓拍照片.png"/>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.2*"/>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="0.8*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="7.2*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btnCapturePhoto" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Stretch"
+                                            HorizontalContentAlignment="Stretch" Background="Transparent" BorderThickness="0">
+                        <Image IsEnabled="False"/>
+                    </Button>
+                    <Grid x:Name="GridAfterbtnCapturePhoto" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="..\..\Images\照片选取后前景.png"/>
+                        </Grid.Background>
+                    </Grid>
+                </Grid>
+                <Grid x:Name="GridCmpPic" Grid.Column="1">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="..\..\Images\比对照片1.png"/>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.2*"/>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="0.8*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="7.2*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btnRegisterPhoto" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Stretch"
+                                            HorizontalContentAlignment="Stretch" Background="Transparent" BorderThickness="0">
+                        <Image IsEnabled="False"/>
+                    </Button>
+                    <Grid x:Name="GridAfterbtnRegisterPhoto" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="..\..\Images\照片选取后前景.png"/>
+                        </Grid.Background>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <!--照片信息-->
+            <Grid Grid.Row="1" Margin="5,0,0,5">
+                <Grid.Background>
+                    <ImageBrush ImageSource="..\..\Images\右侧下方照片比对背景.png"/>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label FontSize="14" Foreground="#D6F9FD" FontFamily="华文细黑" Content="注册照片信息"/>
+                <ListView x:Name="listViewRegisterPhoto" SizeChanged="listViewRegisterPhoto_SizeChanged_1"
+                                          Grid.Row="1" BorderThickness="0" Margin="-1,0,1,0" Background="Transparent" Foreground="#4AEAF8" 
+                                              FontSize="14" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                    <ListView.Resources>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="SnapsToDevicePixels" Value="True"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Grid Background="Transparent">
+                                            <Border x:Name="bd"  
+                                BorderThickness="1"  
+                                Padding="{TemplateBinding Padding}"  
+                                SnapsToDevicePixels="True">
+                                                <GridViewRowPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  
+                                                  Margin="3"/>
+                                            </Border>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="bd" Property="Background">
+                                                    <Setter.Value>
+                                                        <ImageBrush ImageSource="..\..\Images\选中记录背景条.png"/>
+                                                        <!--<LinearGradientBrush StartPoint="0.5,0.22" EndPoint="0.5,1">
+                                                <GradientStop Color="LightGray" Offset="0.31"/>
+                                                <GradientStop Color="Gray" Offset="0.88"/>
+                                            </LinearGradientBrush>-->
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource MyCmpHeaderStyle}" >
+                            <GridViewColumn Header="含义" Width="200" DisplayMemberBinding="{Binding key}"/>
+                            <GridViewColumn Header="值" Width="130" DisplayMemberBinding="{Binding value}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

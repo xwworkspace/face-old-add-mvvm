@@ -1,0 +1,214 @@
+﻿<Window x:Class="FaceSysByMvvm.View.TemplateManager.TempleteImportPop"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FaceSysByMvvm.View.TemplateManager"
+        mc:Ignorable="d"
+        WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent" 
+        Title="批量导入" Height="700" Width="1080" ResizeMode="NoResize" >
+    <Grid Background="Transparent" HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="480"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Height="530" Width="480" VerticalAlignment="Bottom">
+            <Grid.Background>
+                <ImageBrush ImageSource="..\..\Images\子菜单批量导入背景.png"></ImageBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Name="btnClose" Grid.Row="0" Width="24" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,20,0" 
+               BorderThickness="0" Click="btnClose_Click" Style="{DynamicResource btnCloseStyle}"></Button>
+            <!--选择导入的条件-->
+            <Grid Grid.Row="1" Margin="10,0,0,-10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Click="btnHelp_Click" Grid.Column="5" Width="130" Height="40" Name="btnHelp" Content="帮助说明" HorizontalAlignment="Right"
+                 FontFamily="华文细黑" Foreground="#24EAFB" FontSize="20" Style="{DynamicResource btnStyle}" Margin="0,10,10,10"></Button>
+            </Grid>
+            <StackPanel Grid.Row="2" Margin="20,10,10,10" Orientation="Horizontal">
+                <Label Content="包含子文件夹" Margin="10,0,0,0" VerticalAlignment="Center"
+                   Foreground="#16E8FA" FontSize="18" FontFamily="华文细黑"></Label>
+                <ComboBox ItemsSource="{Binding AllDocu}" SelectedIndex="{Binding SelectedAllDocu}" Margin="50,10,10,10" Width="200" Name="combUniformDesigAllDo" Style="{DynamicResource ComboBoxStyle2}"></ComboBox>
+                <TextBox x:Name="MaxUpCountText" Width="80" Margin="20,5,0,5" Visibility="Hidden">50</TextBox>
+                <!--最大上传数字-->
+            </StackPanel>
+            <StackPanel Grid.Row="3" Margin="20,0,0,0" Orientation="Horizontal">
+                <Label Content="统一指定性别" Margin="10,0,0,0" VerticalAlignment="Center"
+                   Foreground="#16E8FA" FontSize="18" FontFamily="华文细黑"></Label>
+                <ComboBox ItemsSource="{Binding Sex}" SelectedIndex="{Binding SelectedSex}" Margin="50,10,10,10" Width="200" Name="combUniformDesigSex" Style="{DynamicResource ComboBoxStyle2}"></ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" Grid.Row="4">
+                <Label Content="统一指定类型" Margin="10,0,0,0" VerticalAlignment="Center"
+                   Foreground="#16E8FA" FontSize="18" FontFamily="华文细黑"></Label>
+                <ComboBox ItemsSource="{Binding Type}" SelectedIndex="{Binding SelectedType}" Margin="50,10,10,10" Width="200"  Name="combUniformSpecifyType" Style="{DynamicResource ComboBoxStyle2}"></ComboBox>
+            </StackPanel>
+            <TextBlock Name="displayCopyInfo" TextAlignment="Center" Text="{Binding ImportInfo}" 
+                   Grid.Row="5" Grid.Column="1" Margin="0,10,0,10" Foreground="#16E8FA" FontSize="18" FontFamily="华文细黑">
+                <TextBlock.Background>
+                    <ImageBrush ImageSource="..\..\Images\子菜单之查看比对记录中间背景.png"></ImageBrush>
+                </TextBlock.Background>
+            </TextBlock>
+            <!--导入进度和数量-->
+            <StackPanel Grid.Row="6" Margin="25,0,0,0">
+                <ProgressBar Maximum="{Binding MaxLength}" Value="{Binding CurrentLength}" Height="30" Name="ProgressBar" Margin="10,10,40,10" BorderBrush="#16E8FA" Background="Transparent"/>
+            </StackPanel>
+            <Button Grid.Row="7" Content="导入模板文件" FontFamily="华文细黑" Foreground="#24EAFB" FontSize="20" Name="btnImportTemplateFile" 
+                         Height="40" Width="260" Margin="0,5,0,5" Style="{DynamicResource btnStyle}" Click="btnImportTemplateFile_Click"></Button>
+            <StackPanel Orientation="Horizontal" Grid.Row="8" Margin="10,10,0,0">
+                <Label Content="错误信息提示:" Margin="20,0,0,0" Height="30"
+                   Foreground="#16E8FA" FontSize="18" FontFamily="华文细黑"></Label>
+                <Label Width="auto" Name="labErrorMessage" Content="{Binding ErrorInfo}" Margin="20,0,0,0"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="9" Margin="10,10,0,0">
+                <Label Content="异常照片数量:" Margin="20,0,0,0"
+                   Foreground="#16E8FA" FontSize="18" FontFamily="华文细黑"></Label>
+                <TextBox Width="80" Text="{Binding ErrorCount}" Name="txtAbnormalPhotos" Margin="20,2,0,2" IsReadOnly="False" Background="Transparent" 
+                     BorderThickness="2" BorderBrush="#16E8FA"></TextBox>
+                <Button Click="btnsaveWrongPhotos_Click" Name="btnsaveWrongPhotos" Content="选择保存异常照片地址" FontFamily="华文细黑" Foreground="#24EAFB" FontSize="15" Width="200"
+                             Margin="10,0,0,0" Style="{DynamicResource btnStyle}"></Button>
+            </StackPanel>
+            <!--错误照片保存和数量-->
+            <StackPanel Orientation="Horizontal" Grid.Row="10" Margin="30,10,0,0">
+                <Label Content="错误照片地址：" Foreground="#16E8FA" FontSize="18" FontFamily="华文细黑"></Label>
+                <Label MouseDown="btnErrorPhotoAddress_MouseDown" Name="btnErrorPhotoAddress" Content="{Binding ErrorAddress}" Foreground="#16E8FA" FontSize="18" FontFamily="华文细黑" Cursor="Hand" ></Label>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="gridImportHelp" Visibility="Collapsed" Width="600" Grid.Column="1" VerticalAlignment="Bottom">
+            <Grid.Background>
+                <ImageBrush ImageSource="..\..\Images\子菜单之批量导入说明.png"></ImageBrush>
+            </Grid.Background>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="0,50,0,0">
+                <ScrollViewer.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Label Foreground="White">导入的文档格式：</Label>
+                        <Label Foreground="White">1.excel文件;2.csv文件;3.纯图片格式</Label>
+                        <Label Foreground="White"></Label>
+                        <Label Foreground="White">1.导入excel文件格式如下：说明列在excel文件中必须存在，且在第一行</Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Foreground="White">说明列：</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White">人脸uuid</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White">姓名</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White">人脸首选模板标识序号</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White">类型</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White">敏感等级</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White">额外信息</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White">性别</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White">年龄</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White">备注</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" Width="84">模板1</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" Width="84">模板2</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" Width="84">模板3</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" Width="84">模板4</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" Width="84">模板5</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Foreground="White">信息列：</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White">5d4e8c2e</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White">aaaa</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" VerticalAlignment="Center" Width="130">1</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" Width="34">1</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" Width="58"></Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" Width="58"></Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" Width="34">1</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" Width="34">12</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" Width="34"></Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" Width="84">图片绝对路径</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" Width="84">图片绝对路径</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" Width="84">图片绝对路径</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" Width="84">图片绝对路径</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                            <Label Foreground="White" Width="84">图片绝对路径</Label>
+                            <GridSplitter Width="1"></GridSplitter>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <Label Foreground="White"></Label>
+                            <Label Foreground="White">各项说明：</Label>
+                            <StackPanel Orientation="Vertical">
+                                <Label Foreground="White">人脸uuid:数字或者字母组合；位数少于64位，字母大小写不限。全局唯一；</Label>
+                                <GridSplitter Height="1"></GridSplitter>
+                                <Label Foreground="White">姓名:中文，英文；</Label>
+                                <Label Foreground="White">人脸首选模板标识序号:后面5个模板序号，1-5；</Label>
+                                <Label Foreground="White">类型:已有类型的序号，从0-n,注意：类型序号为0的必须为未定义</Label>
+                                <Label Foreground="White">敏感等级:非必须项，可不填写</Label>
+                                <Label Foreground="White">额外信息：非必须项，可不填写</Label>
+                                <Label Foreground="White">性别：0，1，2.分别为:未定义，男，女</Label>
+                                <Label Foreground="White">年龄：数字</Label>
+                                <Label Foreground="White">备注：非必须项，可不填写</Label>
+                                <Label Foreground="White">模板1：图片的绝对路径，可不填写</Label>
+                                <Label Foreground="White">模板2：图片的绝对路径，可不填写</Label>
+                                <Label Foreground="White">模板3：图片的绝对路径，可不填写</Label>
+                                <Label Foreground="White">模板4：图片的绝对路径，可不填写</Label>
+                                <Label Foreground="White">模板5：图片的绝对路径，可不填写</Label>
+                                <Label Foreground="White">模板：但是必须要有一张，且图片无误，否则将添加不成功</Label>
+                            </StackPanel>
+                        </StackPanel>
+                        <Label></Label>
+                        <Label Foreground="White">统一制定性别：可不选；如果选择，excel文件中满足条件的信息列将填入模板</Label>
+                        <Label Foreground="White">统一制定类别：可不选；如果选择，excel文件中满足条件的信息列将填入模板</Label>
+                        <Label Foreground="White">统一制定性别和统一制定类别：同时选择，excel文件中满足条件的信息列将填入模板</Label>
+                        <Label Foreground="White">统一制定性别和统一制定类别：都不选择，导入的模板将不会有姓名和类别之分</Label>
+                        <Label Foreground="White"></Label>
+                        <Label Foreground="White"></Label>
+                        <Label Foreground="White">2.导入csv文件：说明列在csv文件中不能存在，信息列严格按照excel文件的顺序排放，中间用英文逗号分隔。每一行信息列占据一行，新的信息列必须换行。</Label>
+                        <Label Foreground="White">统一制定性别：可不选；如果选择，csv文件中满足条件的信息列将填入模板</Label>
+                        <Label Foreground="White">统一制定类别：可不选；如果选择，csv文件中满足条件的信息列将填入模板</Label>
+                        <Label Foreground="White">统一制定性别和统一制定类别：同时选择，csv文件中满足条件的信息列将填入模板</Label>
+                        <Label Foreground="White">统一制定性别和统一制定类别：都不选择，导入的模板将不会有姓名和类别之分</Label>
+                        <Label Foreground="White"></Label>
+                        <Label Foreground="White"></Label>
+                        <Label Foreground="White">3.导入纯图片</Label>
+                        <Label Foreground="White">统一制定性别：可不选；如果选择，必须将指定的类别放入同一文件夹读取</Label>
+                        <Label Foreground="White">统一制定类别：可不选；如果选择，必须将指定的类别放入同一文件夹读取</Label>
+                        <Label Foreground="White">统一制定性别和统一制定类别：同时选择，必须将指定的类别放入同一文件夹读取</Label>
+                        <Label Foreground="White">统一制定性别和统一制定类别：都不选择，导入的模板将不会有姓名和类别之分</Label>
+                    </StackPanel>
+                </ScrollViewer.Content>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+</Window>
