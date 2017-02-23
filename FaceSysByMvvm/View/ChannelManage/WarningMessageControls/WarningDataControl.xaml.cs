@@ -1,4 +1,8 @@
-﻿using System.Windows.Controls;
+﻿using FaceSysByMvvm.Model;
+using FaceSysByMvvm.ZModel;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace FaceSysByMvvm.View.ChannelManage.WarningMessageControls
 {
@@ -10,8 +14,14 @@ namespace FaceSysByMvvm.View.ChannelManage.WarningMessageControls
         public WarningDataControl()
         {
             InitializeComponent();
+        }
 
-            
+        private void cameraList_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            ListView item = sender as ListView;
+
+            ViewDataModel.WarningData.Property.CurCompareLogDatas = item.SelectedItems;
+
         }
     }
 }

@@ -1,33 +1,46 @@
 ﻿using FaceSysByMvvm.Model;
 using Prism.Mvvm;
+using System.Collections.ObjectModel;
 
 namespace FaceSysByMvvm.ViewModel.ChannelManage
 {
     public class WarningMessageWindowViewModel : BindableBase
     {
         private WarningMessageCmd _cmd = new WarningMessageCmd();
-        private WarningMessageModel _property = new WarningMessageModel();
+        private WarningMessageModel _property;
+        WarningMessageWindowViewModel _wmv;
         public WarningMessageCmd Cmd
         {
             get { return _cmd; }
-            private set { SetProperty(ref _cmd, value); }
+            set { SetProperty(ref _cmd, value); }
         }
 
         public WarningMessageModel Property
         {
             get { return _property; }
-            private set { SetProperty(ref _property, value); }
+            set { SetProperty(ref _property, value); }
+        }
+
+        public WarningMessageWindowViewModel Wmv
+        {
+            get { return _wmv; }
+            set
+            {
+                _wmv = value;
+                SetProperty(ref _wmv, value);
+            }
         }
 
         public WarningMessageWindowViewModel()
         {
             WarningMessageCmd.InitCmd()();
-            Property.MyProperty = "MyTitle";
+            Property = new WarningMessageModel();
+            Property.CompareLogDatas = new ObservableCollection<MyCmpFaceLogWidthImgModel>();
+        }
 
-            Property.CompareLogDatas = new System.Collections.Generic.List<object>();
-            Property.CompareLogData = new object();
-            Property.CompareLogData = "1234567890";
-            Property.CompareLogDatas.Add(Property.CompareLogData);
+        public void RefreshProperty()
+        {
+            OnPropertyChanged("Property");
         }
     }
 }

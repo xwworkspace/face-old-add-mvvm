@@ -192,9 +192,14 @@
                         </Grid>
                     </Grid>
                     <!--列表显示-->
-                    <ListView ListViewItem.MouseDoubleClick="listComparisonRecord_MouseDoubleClick"  Grid.Row="1" x:Name="listComparisonRecord" BorderThickness="0" 
-                                                  Foreground="#4AEAF8" FontSize="14" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SizeChanged="listComparisonRecord_SizeChanged_1"
-                                                  SelectionChanged="listComparisonRecord_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemsSource="{Binding ListMyCmpFaceLogWidthImg}" Grid.ColumnSpan="2">
+                    <ListView ListViewItem.MouseDoubleClick="listComparisonRecord_MouseDoubleClick"  Grid.Row="1" x:Name="listComparisonRecord" 
+                              BorderThickness="0" 
+                              Foreground="#4AEAF8" FontSize="14" 
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                              SizeChanged="listComparisonRecord_SizeChanged_1"
+                              SelectionChanged="listComparisonRecord_SelectionChanged" 
+                              ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                              ItemsSource="{Binding ListMyCmpFaceLogWidthImg}" Grid.ColumnSpan="2">
                         <ListView.Resources>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Setter Property="SnapsToDevicePixels" Value="True"/>

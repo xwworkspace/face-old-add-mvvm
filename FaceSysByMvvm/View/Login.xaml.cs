@@ -105,9 +105,6 @@ namespace FaceSysByMvvm
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            WarningMessageWindow warn = new WarningMessageWindow();
-            warn.Show();
-            return;
             IThirtfService its = new ThirftService();
             try
             {

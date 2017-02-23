@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="FaceSysByMvvm.View.ChannelManage.WarningMessageControls.WarningDataPreviewControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:FaceSysByMvvm.View.ChannelManage.WarningMessageControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="400">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="抓拍人像" FontSize="16" Grid.Row="0" Grid.Column="0" Background="Black" Foreground="White"
+                   Height="28"/>
+        <Image Source="{Binding}" Grid.Row="1" Grid.Column="0" Margin="5" />
+        <TextBlock Text="数据库人像" FontSize="16" Grid.Row="0" Grid.Column="1" Background="Black" Foreground="White" Margin="1,0" 
+                   Height="28"/>
+        <Image Source="{Binding}" Grid.Row="1" Grid.Column="1" Margin="5" />
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Background="White" Orientation="Vertical">
+            <StackPanel>
+                <TextBlock Text="描述" FontSize="16" Background="Black" Foreground="White" Margin="1,0" 
+                           Height="28" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="" TextWrapping="Wrap" FontSize="16"/>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

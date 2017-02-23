@@ -2,13 +2,13 @@
 
 namespace FaceSysByMvvm.ZModel
 {
-    internal class ViewDataModel
+    public class ViewDataModel
     {
-        static object _warningData = new WarningMessageWindowViewModel();
-        public static object WarningData
+        static WarningMessageWindowViewModel _warningData = new WarningMessageWindowViewModel();
+        public static WarningMessageWindowViewModel WarningData
         {
             get { return _warningData; }
-            private set { _warningData = value; }
+            set { _warningData = value; }
         }
     }
 }

@@ -1,10 +1,13 @@
 ﻿using DZVideoWpf;
 using FaceSysByMvvm.Common;
+using FaceSysByMvvm.Model;
 using FaceSysByMvvm.ResourcesDictionary;
 using FaceSysByMvvm.Services;
 using FaceSysByMvvm.View.CompOfRecords;
 using FaceSysByMvvm.View.TemplateManager;
 using FaceSysByMvvm.ViewModel;
+using FaceSysByMvvm.ViewModel.ChannelManage;
+using FaceSysByMvvm.ZModel;
 using FaceSysClient.ClassPool;
 using System;
 using System.Collections.Generic;
@@ -67,7 +70,7 @@ namespace FaceSysByMvvm.View.ChannelManage
             ResetServerRealtimeCapInfo = new ManualResetEvent(false);
             ResetServerRealtimeCmpInfo = new ManualResetEvent(false);
             //初始化OCX控件载体
-            for (int i = 0;i< 16;i++)
+            for (int i = 0; i < 16; i++)
             {
                 WindowsFormsHost wfh = new WindowsFormsHost();
                 wfh.Tag = null;
@@ -95,7 +98,7 @@ namespace FaceSysByMvvm.View.ChannelManage
                 {
                     double trueThreshold = Math.Sqrt(threshold) * 10;
                     trueThreshold = Math.Round(trueThreshold, 0, MidpointRounding.AwayFromZero);
-                    _ChannelManageViewModel.SelectedThreshold = Convert.ToInt32(trueThreshold) -1;
+                    _ChannelManageViewModel.SelectedThreshold = Convert.ToInt32(trueThreshold) - 1;
                 }
             }
             //根据客户端类型来修改客户端
@@ -121,7 +124,7 @@ namespace FaceSysByMvvm.View.ChannelManage
         /// <param name="e"></param>
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
             SnapshotToggleButton.IsEnabled = true;
             DistinguishToggleButton.IsEnabled = true;
             SnapshotToggleButton.IsChecked = false;
@@ -129,7 +132,7 @@ namespace FaceSysByMvvm.View.ChannelManage
             ToggleButton tb = sender as ToggleButton;
             tb.IsEnabled = false;
             tb.IsChecked = true;
-            if(tb.Name == "SnapshotToggleButton")
+            if (tb.Name == "SnapshotToggleButton")
             {
                 Snapshot.Visibility = Visibility.Visible;
                 Distinguish.Visibility = Visibility.Collapsed;
@@ -168,7 +171,7 @@ namespace FaceSysByMvvm.View.ChannelManage
                         lbi.IsOpened = true;
                         currentVideo++;
                         UserControl1 usercontrol = new UserControl1();
-                        usercontrol.opencamera(lbi.MyChannelCfg.CaptureCfg.NCaptureType, lbi.MyChannelCfg.CaptureCfg.TcAddr +"|" + lbi.MyChannelCfg.TcDescription, (uint)lbi.MyChannelCfg.CaptureCfg.NPort, lbi.MyChannelCfg.CaptureCfg.TcUID, lbi.MyChannelCfg.CaptureCfg.TcPSW, 1, 1);
+                        usercontrol.opencamera(lbi.MyChannelCfg.CaptureCfg.NCaptureType, lbi.MyChannelCfg.CaptureCfg.TcAddr + "|" + lbi.MyChannelCfg.TcDescription, (uint)lbi.MyChannelCfg.CaptureCfg.NPort, lbi.MyChannelCfg.CaptureCfg.TcUID, lbi.MyChannelCfg.CaptureCfg.TcPSW, 1, 1);
                         foreach (WindowsFormsHost wfh in wFHList)
                         {
                             if (wfh.Tag == null)
@@ -210,7 +213,7 @@ namespace FaceSysByMvvm.View.ChannelManage
                 _WriteLog.WriteToLog("ChannelManageListBox_MouseDoubleClick", ex);
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         /// <summary>
@@ -348,6 +351,9 @@ namespace FaceSysByMvvm.View.ChannelManage
             }
         }
 
+        WarningMessageWindowViewModel viewModel = new WarningMessageWindowViewModel();
+        WarningMessageWindow wmw = null;
+        bool warningWindowIsOpen = false;
         /// <summary>
         /// 比对监听
         /// </summary>
@@ -408,32 +414,68 @@ namespace FaceSysByMvvm.View.ChannelManage
                                                 {
                                                     try
                                                     {
-                                                        WarningMessage wm = new WarningMessage();
+                                                        viewModel.Property.CompareLogData = new MyCmpFaceLogWidthImgModel();
                                                         if (!isCmpSend)
                                                         {
-                                                            if (cmpInfoDictionary.ContainsKey(tempIdentifyResults.Info.Name)) // True 
-                                                            {
-                                                                if (tempIdentifyResults.Info.Time - cmpInfoDictionary[tempIdentifyResults.Info.Name] <= 120)
-                                                                {
-                                                                    wm.SetWarningRed();
-                                                                    cmpInfoDictionary[tempIdentifyResults.Info.Name] = tempIdentifyResults.Info.Time;
-                                                                }
-                                                                cmpInfoDictionary[tempIdentifyResults.Info.Name] = tempIdentifyResults.Info.Time;
-                                                            }
-                                                            else
-                                                            {
-                                                                cmpInfoDictionary.Add(tempIdentifyResults.Info.Name, tempIdentifyResults.Info.Time);
-                                                            }
+                                                            //viewModel.Property.CompareLogData.num = 0;
+                                                            viewModel.Property.CompareLogData.score = tempIdentifyResults.Info.Score;
+                                                            viewModel.Property.CompareLogData.name = tempIdentifyResults.Info.Name;
+                                                            DateTime s = new DateTime(1970, 1, 1);
+                                                            viewModel.Property.CompareLogData.time = s.AddSeconds(tempIdentifyResults.Info.Time).ToString();
+                                                            viewModel.Property.CompareLogData.channelName = tempIdentifyResults.ChannelName;
                                                         }
+
                                                         if (tempIdentifyResults.CapImg == null || tempIdentifyResults.RegImg == null)
                                                         {
-                                                            tempIdentifyResults.CapImg = myBitmapImage;
-                                                            tempIdentifyResults.RegImg = myBitmapImage2;
+                                                            viewModel.Property.CompareLogData.SnapImage = myBitmapImage;
+                                                            viewModel.Property.CompareLogData.DBImage = myBitmapImage2;
                                                         }
-                                                        myBitmapImage = null;
-                                                        myBitmapImage2 = null;
-                                                        wm.SetWarningInfo(tempIdentifyResults.Info.Name, tempIdentifyResults.ChannelName, tempIdentifyResults.Info.Time, tempIdentifyResults.TemplateType, tempIdentifyResults.Info.Score + "", tempIdentifyResults.CapImg, tempIdentifyResults.RegImg, tempIdentifyResults.Info);
-                                                        wm.Show();
+
+                                                        viewModel.Property.CompareLogData.SnapImage = myBitmapImage;
+                                                        viewModel.Property.CompareLogData.DBImage = myBitmapImage2;
+                                                        viewModel.Property.CompareLogDatas.Add(viewModel.Property.CompareLogData);
+                                                       
+                                                        #region old
+                                                        //WarningMessage wm = new WarningMessage();
+                                                        //if (!isCmpSend)
+                                                        //{
+                                                        //    if (cmpInfoDictionary.ContainsKey(tempIdentifyResults.Info.Name)) // True 
+                                                        //    {
+                                                        //        if (tempIdentifyResults.Info.Time - cmpInfoDictionary[tempIdentifyResults.Info.Name] <= 120)
+                                                        //        {
+                                                        //            wm.SetWarningRed();
+                                                        //            cmpInfoDictionary[tempIdentifyResults.Info.Name] = tempIdentifyResults.Info.Time;
+                                                        //        }
+                                                        //        cmpInfoDictionary[tempIdentifyResults.Info.Name] = tempIdentifyResults.Info.Time;
+                                                        //    }
+                                                        //    else
+                                                        //    {
+                                                        //        cmpInfoDictionary.Add(tempIdentifyResults.Info.Name, tempIdentifyResults.Info.Time);
+                                                        //    }
+                                                        //}
+                                                        //if (tempIdentifyResults.CapImg == null || tempIdentifyResults.RegImg == null)
+                                                        //{
+                                                        //    tempIdentifyResults.CapImg = myBitmapImage;
+                                                        //    tempIdentifyResults.RegImg = myBitmapImage2;
+                                                        //}
+                                                        //myBitmapImage = null;
+                                                        //myBitmapImage2 = null;
+                                                        //wm.SetWarningInfo(tempIdentifyResults.Info.Name, tempIdentifyResults.ChannelName, tempIdentifyResults.Info.Time, tempIdentifyResults.TemplateType, tempIdentifyResults.Info.Score + "", tempIdentifyResults.CapImg, tempIdentifyResults.RegImg, tempIdentifyResults.Info);
+                                                        //wm.Show();
+                                                        #endregion
+
+                                                        if (!warningWindowIsOpen)
+                                                        {
+                                                            ViewDataModel.WarningData = viewModel;
+                                                            viewModel.Wmv = viewModel;
+                                                            wmw = new WarningMessageWindow();
+                                                            wmw.Show();
+                                                            warningWindowIsOpen = true;
+                                                        }
+                                                        else
+                                                        {
+                                                            viewModel.RefreshProperty();
+                                                        }
                                                     }
                                                     catch (Exception ex)
                                                     {
@@ -488,7 +530,7 @@ namespace FaceSysByMvvm.View.ChannelManage
                                                             }
                                                         }
                                                     }
-                                                }              
+                                                }
                                             }
                                         }
                                     }
@@ -592,7 +634,7 @@ namespace FaceSysByMvvm.View.ChannelManage
                 foreach (Grid thing in VideoPartGrid.Children)
                 {
                     thing.Children.Clear();
-                } 
+                }
                 VideoPartGrid.Children.Clear();
                 VideoPartGrid.RowDefinitions.Clear();
                 VideoPartGrid.ColumnDefinitions.Clear();
@@ -653,7 +695,7 @@ namespace FaceSysByMvvm.View.ChannelManage
                 {
                     Grid screenGrid = new Grid();
                     screenGrid.Background = this.FindResource("ViedoBackground") as ImageBrush;
-                    if(sceenCount == 3&&i==2)
+                    if (sceenCount == 3 && i == 2)
                     {
                         screenGrid.SetValue(Grid.RowProperty, i / ColCount);
                         screenGrid.SetValue(Grid.ColumnProperty, i % ColCount);
@@ -747,7 +789,7 @@ namespace FaceSysByMvvm.View.ChannelManage
                 MyMessage.showYes("请选中需要修改的通道!");
                 return;
             }
-            
+
             ChannelListItemViewModel lbi = ChannelManageListBox.SelectedItem as ChannelListItemViewModel;
             ChannelInfo channelInfo = new ChannelInfo();
             channelInfo.RefreshChannelDelegate = _ChannelManageViewModel.RefreshChannelList;
@@ -804,7 +846,7 @@ namespace FaceSysByMvvm.View.ChannelManage
         private void listViewContIdentifyResults_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             IdentifyResults _IdentifyResults = listViewContIdentifyResults.SelectedItem as IdentifyResults;
-            if(_IdentifyResults == null)
+            if (_IdentifyResults == null)
             {
                 return;
             }
@@ -855,8 +897,8 @@ namespace FaceSysByMvvm.View.ChannelManage
                 MyMessage.showYes("删除通道失败！");
                 _WriteLog.WriteToLog("btnDeletePassageWay_Click", ex);
             }
-            
-            
+
+
         }
 
         /// <summary>
@@ -886,7 +928,7 @@ namespace FaceSysByMvvm.View.ChannelManage
             {
                 _WriteLog.WriteToLog("CloseVideo", ex);
             }
-            
+
 
         }
 
@@ -897,17 +939,17 @@ namespace FaceSysByMvvm.View.ChannelManage
         /// <param name="e"></param>
         private void listViewCaptureResults_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if(Login.ClientType == "1")
+            if (Login.ClientType == "1")
             {
                 return;
             }
             MyCapFaceLogWithImg cmpFaceLogWidthImg = listViewCaptureResults.SelectedItem as MyCapFaceLogWithImg;
-            if(cmpFaceLogWidthImg == null)
+            if (cmpFaceLogWidthImg == null)
             {
                 return;
             }
             List<byte[]> listImageBytes = new List<byte[]>();
-            listImageBytes = thirft.QueryCapLogImageH(cmpFaceLogWidthImg.ID,cmpFaceLogWidthImg.time.Split(' ')[0].Replace(@"/", "").Replace(@"/", ""));
+            listImageBytes = thirft.QueryCapLogImageH(cmpFaceLogWidthImg.ID, cmpFaceLogWidthImg.time.Split(' ')[0].Replace(@"/", "").Replace(@"/", ""));
             TempleteInfoPop tIP = new TempleteInfoPop();
             if (listImageBytes.Count <= 0)
             {
@@ -917,7 +959,7 @@ namespace FaceSysByMvvm.View.ChannelManage
             {
                 tIP.SetTempleteInfo(null, 3, listImageBytes[0]);
             }
-            
+
             tIP.ShowDialog();
         }
 
@@ -943,7 +985,7 @@ namespace FaceSysByMvvm.View.ChannelManage
                 return;
             }
             ComboBox cb = sender as ComboBox;
-            thirft.SetCMPthreshold(Convert.ToInt32(_ChannelManageViewModel.SelectedThreshold  + 1));
+            thirft.SetCMPthreshold(Convert.ToInt32(_ChannelManageViewModel.SelectedThreshold + 1));
         }
     }
 }

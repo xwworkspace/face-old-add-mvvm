@@ -9,43 +9,68 @@
         xmlns:views="clr-namespace:FaceSysByMvvm.View.ChannelManage"
         xmlns:controls ="clr-namespace:FaceSysByMvvm.View.ChannelManage.WarningMessageControls"
         mc:Ignorable="d"
-        Title="报警提示窗口" Height="500" Width="800"
+        Title="报警提示窗口" Height="600" Width="1000" 
         d:DataContext="{d:DesignInstance warningModels:WarningMessageWindowViewModel,IsDesignTimeCreatable=True}"
-        prism:ViewModelLocator.AutoWireViewModel="True"> 
+        prism:ViewModelLocator.AutoWireViewModel="True">
 
-    <Window.Resources>
+    <!--d:DataContext="{d:DesignInstance warningModels:WarningMessageWindowViewModel,IsDesignTimeCreatable=True}"
+        prism:ViewModelLocator.AutoWireViewModel="false"-->
+
+    <!--<Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="16" />
         </Style>
-    </Window.Resources>
+    </Window.Resources>-->
 
-    <Grid Background="White">
+    <Grid Background="White" Margin="5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
+
+        <controls:WarningDataControl/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" Margin="10,10,10,5">
+            <Button Margin="10,0" Padding="5,0" 
+                    Content="刷新告警" 
+                    FontSize="16"
+                    Background="Black"
+                    Foreground="White"
+                    BorderThickness="0"
+                    BorderBrush="Black"
+                    Command="{Binding Cmd.RefreshBtnCommand}" CommandParameter="{Binding Wmv}" />
+            <Button Margin="10,0" Padding="5,0" 
+                    Content="全部清空" 
+                    FontSize="16"
+                    Background="Black"
+                    Foreground="White"
+                    BorderThickness="0"
+                    BorderBrush="Black"
+                    Command="{Binding Cmd.ClearAllBtnCommand}" CommandParameter="{Binding Property.CompareLogDatas}" />
+            <Button Margin="10,0" Padding="5,0" 
+                    Content="推送选中项" 
+                    FontSize="16"
+                    Background="Black"
+                    Foreground="White"
+                    BorderThickness="0"
+                    BorderBrush="Black"
+                    Command="{Binding Cmd.BatchSendBtnCommand}" />
+        </StackPanel>
+
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="400" />
         </Grid.ColumnDefinitions>
 
-        <Button Content="Btn00001" FontSize="30" Margin="20" Command="{Binding Cmd.TestBtnCommand}" />
-
-        <Grid Grid.Row="1" Grid.Column="0">
+        <Grid Grid.Column="0">
             <controls:WarningDataControl />
         </Grid>
-
-        <Grid Grid.Row="1" Grid.Column="1" Background="Gray">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
-            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20,0">
-                <Button Margin="10,0" Padding="5,0" Content="清空记录" Command="{Binding Cmd.ClearBtnCommand}" />
-                <Button Margin="10,0" Padding="5,0" Content="推送结果" Command="{Binding}" />
-                <Button Margin="10,0" Padding="5,0" Content="推送结果" Command="{Binding Cmd.SendBtnCommand}" />
-            </StackPanel>
-        </Grid>
+        
+        <Grid Grid.Column="1" Width="2" Background="Black"></Grid>
+        
+        <Grid Grid.Column="2">
+            <controls:WarningDataPreviewControl />
+        </Grid>-->
     </Grid>
 </Window>

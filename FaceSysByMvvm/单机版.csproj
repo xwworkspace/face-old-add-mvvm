@@ -161,6 +161,7 @@
     <Compile Include="Common\NpoiExtend.cs" />
     <Compile Include="Common\OperaExcel.cs" />
     <Compile Include="Common\ValidationRule.cs" />
+    <Compile Include="Model\MyCmpFaceLogWidthImgModel.cs" />
     <Compile Include="Model\ViewDataModel.cs" />
     <Compile Include="Model\WarningMessageCmd.cs" />
     <Compile Include="Model\WarningMessageModel.cs" />
@@ -187,6 +188,9 @@
     </Compile>
     <Compile Include="View\ChannelManage\WarningMessageControls\WarningDataControl.xaml.cs">
       <DependentUpon>WarningDataControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChannelManage\WarningMessageControls\WarningDataPreviewControl.xaml.cs">
+      <DependentUpon>WarningDataPreviewControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ChannelManage\WarningMessageWindow.xaml.cs">
       <DependentUpon>WarningMessageWindow.xaml</DependentUpon>
@@ -231,6 +235,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ChannelManage\WarningMessageControls\WarningDataControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChannelManage\WarningMessageControls\WarningDataPreviewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
